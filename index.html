@@ -2,167 +2,106 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Word to PDF – EasyUseHub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📝 Word to PDF | EasyUseHub</title>
 <style>
-body, html {
-    font-family: 'Segoe UI', sans-serif;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f5f7fa;
+    text-align:center;
 }
-.container {
-    width: 90%;
-    max-width: 650px;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    text-align: center;
+header{
+    background:#fff;
+    padding:15px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
 }
-h2 { margin-bottom: 10px; color: #1e293b; }
-p.description {
-    color: #475569;
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-    line-height: 1.6;
-    letter-spacing: 0.5px;
-    font-style: italic;
+.container{
+    width:90%;
+    max-width:900px;
+    margin:30px auto;
 }
-.upload {
-    padding: 25px;
-    border: 3px dashed #9333ea;
-    border-radius: 15px;
-    cursor: pointer;
-    margin-bottom: 12px;
-    font-weight: 600;
-    color: #9333ea;
-    transition: 0.3s;
+#ad-top, #ad-middle{
+    background:#eee;
+    padding:20px;
+    margin:20px 0;
+    border-radius:8px;
 }
-.upload:hover { background: #f5e6fa; transform: scale(1.03); }
-button {
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    margin: 10px 3px;
-    background: #9333ea;
-    color: #fff;
-    transition: 0.3s;
+.upload-btn{
+    display:inline-block;
+    padding:15px 30px;
+    background:#2563eb;
+    color:#fff;
+    border-radius:6px;
+    cursor:pointer;
+    margin:20px 0;
 }
-button:hover { background: #7e22ce; }
-#download-btn { display:none; background:#2563eb; }
-#download-btn:hover { background:#1e40af; }
-#status { margin-top: 10px; color: #475569; }
-.bottom-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 20px;
+.buttons{
+    margin-top:10px;
 }
-.bottom-buttons a {
-    text-decoration: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    background: #1e293b;
-    color: #fff;
-    font-weight: 600;
+.buttons button{
+    padding:10px 20px;
+    margin:5px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    color:#fff;
 }
-.bottom-buttons a:hover { background: #3b82f6; }
-.ad-placeholder {
-    margin: 15px 0;
-    padding: 15px;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    color: #999;
-    font-size: 0.9rem;
-    text-align: center;
-}
+.tools{ background:#10b981; }
+.home{ background:#f59e0b; }
 </style>
 </head>
 <body>
 
+<header>
+<h2>Word to PDF – EasyUseHub</h2>
+</header>
+
 <div class="container">
-<h2>📝 Word to PDF</h2>
-<p class="description">
-Convert your Word document (.docx/.doc) to PDF instantly. Upload your file and download the PDF.
-</p>
 
-<div class="ad-placeholder">Ad Placeholder</div>
-
-<div class="upload" onclick="document.getElementById('file').click()">📁 Upload Word File</div>
-<input type="file" id="file" accept=".doc,.docx" hidden>
-
-<button id="convert-btn">Convert to PDF</button>
-<button id="download-btn">📥 Download PDF</button>
-<p id="status">No file selected</p>
-
-<!-- Bottom Buttons: Only All PDF Tools and Home -->
-<div class="bottom-buttons">
-    <a href="https://easyusehub.blogspot.com/p/free-pdf-tools-easyusehub.html?m=1" target="_blank">📂 All PDF Tools</a>
-    <a href="https://easyusehub.blogspot.com/?m=1" target="_blank">🏠 Home</a>
+<div id="ad-top">
+<strong>Convert Word to PDF</strong> – Easily convert your DOC/DOCX files into PDF format.
 </div>
 
-<div class="ad-placeholder">Ad Placeholder</div>
+<p>Click below to convert your Word file to PDF</p>
+
+<label class="upload-btn" onclick="loadWordToPdfWidget()">
+Upload File
+</label>
+
+<div id="widgetArea" style="margin-top:30px;"></div>
+
+<div id="ad-middle">Middle Ad Placeholder</div>
+
+<!-- All PDF Tools + Home buttons -->
+<div class="buttons">
+<button class="tools" onclick="window.location.href='https://easyusehub.blogspot.com/p/free-pdf-tools-easyusehub.html?m=1'">
+All PDF Tools
+</button>
+<button class="home" onclick="window.location.href='https://easyusehub.blogspot.com/?m=1'">
+Home
+</button>
 </div>
 
-<!-- JS Libraries -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js"></script>
+</div>
 
+<!-- PDF24 official widget -->
+<script src="https://tools.pdf24.org/static/js/widget.js"></script>
 <script>
-let file = null;
-
-document.getElementById('file').addEventListener('change', async (e)=>{
-    file = e.target.files[0];
-    if(!file) return;
-    if(file.size>30*1024*1024){ alert('Max 30MB'); return; }
-    document.getElementById('status').textContent = `✔ ${file.name} selected`;
-});
-
-document.getElementById('convert-btn').addEventListener('click', async ()=>{
-    if(!file){ alert('Upload Word file first'); return; }
-    document.getElementById('status').textContent = 'Converting Word to PDF...';
-
-    const arrayBuffer = await file.arrayBuffer();
-    
-    // Extract text from Word using Mammoth
-    const result = await mammoth.extractRawText({arrayBuffer});
-    const text = result.value;
-
-    // Create PDF using pdf-lib
-    const { PDFDocument, rgb, StandardFonts } = PDFLib;
-    const pdfDoc = await PDFDocument.create();
-    const page = pdfDoc.addPage();
-    const { width, height } = page.getSize();
-    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-    const fontSize = 12;
-    
-    const lines = text.split('\n');
-    let y = height - 40;
-    for(const line of lines){
-        page.drawText(line, { x: 40, y, size: fontSize, font, color: rgb(0,0,0) });
-        y -= fontSize + 4;
-        if(y < 40){ y = height - 40; page = pdfDoc.addPage(); }
+function loadWordToPdfWidget(){
+    if(typeof pdf24 === "undefined"){
+        alert("Tool loading... Please click again");
+        return;
     }
 
-    const pdfBytes = await pdfDoc.save();
-    const blob = new Blob([pdfBytes], {type: 'application/pdf'});
-    const url = URL.createObjectURL(blob);
-
-    const downloadBtn = document.getElementById('download-btn');
-    downloadBtn.style.display='block';
-    downloadBtn.onclick = ()=>{
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = file.name.replace(/\.(docx|doc)$/i, '.pdf');
-        a.click();
-    };
-
-    document.getElementById('status').textContent = '✔ Conversion complete! Download your PDF.';
-});
+    pdf24.loadWidget('word-to-pdf', {
+        containerId: 'widgetArea',
+        langCode: 'en',
+        widgetConfig: {
+            theme: 'lightTheme'
+        }
+    });
+}
 </script>
 
 </body>
