@@ -5,50 +5,23 @@
 <title>Word to PDF – EasyUseHub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#f5f7fa;
-    text-align:center;
-}
-header{
-    background:#fff;
-    padding:15px;
-    box-shadow:0 2px 5px rgba(0,0,0,.1);
-}
-.container{
-    width:90%;
-    max-width:900px;
-    margin:30px auto;
-}
-#ad-top, #ad-middle{
-    background:#eee;
-    padding:20px;
-    margin:20px 0;
-    border-radius:8px;
-}
-.upload-btn{
-    display:inline-block;
-    padding:15px 30px;
-    background:#2563eb;
-    color:#fff;
-    border-radius:6px;
-    cursor:pointer;
-    margin:20px 0;
-}
-.buttons{
-    margin-top:10px;
-}
-.buttons button{
-    padding:10px 20px;
-    margin:5px;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-    color:#fff;
-}
-.tools{ background:#10b981; }
-.home{ background:#f59e0b; }
+/* তোর মূল CSS ঠিক রাখা হয়েছে */
+body{margin:0; font-family:Arial, sans-serif; background:#f5f7fa; text-align:center;}
+header{background:#fff; padding:15px; box-shadow:0 2px 5px rgba(0,0,0,.1);}
+.container{width:95%; max-width:900px; margin:20px auto;}
+
+/* EasyUseHub Custom Ad Style - তোর আগের টুলের ডিজাইন অনুযায়ী */
+.custom-ad-bridge { background: #fff; border-left: 6px solid #fbbf24; padding: 18px; margin: 20px auto; border-radius: 12px; cursor: pointer; text-align: left; box-shadow: 0 4px 15px rgba(0,0,0,0.06); transition: transform 0.2s ease; }
+.custom-ad-bridge:hover { transform: translateY(-3px); }
+.ad-title { font-size: 16px; font-weight: bold; color: #2563eb; display: block; margin-bottom: 6px; }
+.ad-desc { font-size: 12px; color: #64748b; line-height: 1.5; display: block; margin-bottom: 10px; }
+.ad-btn { background: #2563eb; color: #fff; padding: 8px 16px; border-radius: 6px; font-weight: bold; font-size: 11px; border:none; text-transform: uppercase; cursor:pointer;}
+
+.upload-btn{display:inline-block; padding:15px 30px; background:#2563eb; color:#fff; border-radius:6px; cursor:pointer; margin:20px 0; font-weight: bold;}
+.buttons{margin-top:25px; display: flex; justify-content: center; gap: 10px;}
+.buttons button{flex: 1; max-width: 150px; padding:12px; border:none; border-radius:8px; cursor:pointer; color:#fff; font-weight: bold; font-size: 13px;}
+.tools{ background:#334155; }
+.home{ background:#334155; }
 </style>
 </head>
 <body>
@@ -59,33 +32,39 @@ header{
 
 <div class="container">
 
-<div id="ad-top">
-<strong>Convert Word to PDF</strong> – Easily convert your DOC/DOCX files into PDF format.
+    <div class="custom-ad-bridge" onclick="window.open('https://easyusehub.blogspot.com', '_blank')">
+        <span class="ad-title">🚀 Unlock 46+ Premium Online Tools</span>
+        <span class="ad-desc">Professional PDF Management, Image Converters & more! Secure & Fast.</span>
+        <button class="ad-btn">Explore For Free</button>
+    </div>
+
+    <p style="color: #475569; font-weight: bold; margin-top: 20px;">Click below to convert your Word file to PDF</p>
+
+    <label class="upload-btn" onclick="loadWordToPdfWidget()">
+        📁 Upload Word File
+    </label>
+
+    <div id="widgetArea" style="margin-top:30px;"></div>
+
+    <div class="custom-ad-bridge" style="border-left-color: #8b5cf6;" onclick="window.open('https://easyusehub.blogspot.com', '_blank')">
+        <span class="ad-title" style="color:#8b5cf6;">🔢 Smart Online Calculators</span>
+        <span class="ad-desc">Need to calculate Age, BMI, or Loan EMI? High-speed accurate results.</span>
+        <button class="ad-btn" style="background:#8b5cf6;">Try Calculators</button>
+    </div>
+
+    <div class="buttons">
+        <button class="home" onclick="window.location.href='https://easyusehub.blogspot.com/?m=1'">🏠 Home</button>
+        <button class="tools" onclick="window.location.href='https://easyusehub.blogspot.com/p/free-pdf-tools-online.html'">📂 All PDF Tools</button>
+    </div>
+
+    <div class="custom-ad-bridge" style="border-left-color: #10b981;" onclick="window.open('https://easyusehub.blogspot.com', '_blank')">
+        <span class="ad-title" style="color:#10b981;">⚡ Ultra-Fast Image Compressor</span>
+        <span class="ad-desc">Optimize images for your web projects without losing any quality.</span>
+        <button class="ad-btn" style="background:#10b981;">Compress Now</button>
+    </div>
+
 </div>
 
-<p>Click below to convert your Word file to PDF</p>
-
-<label class="upload-btn" onclick="loadWordToPdfWidget()">
-Upload File
-</label>
-
-<div id="widgetArea" style="margin-top:30px;"></div>
-
-<div id="ad-middle">Middle Ad Placeholder</div>
-
-<!-- All PDF Tools + Home buttons -->
-<div class="buttons">
-<button class="tools" onclick="window.location.href='https://easyusehub.blogspot.com/p/free-pdf-tools-online.html'">
-All PDF Tools
-</button>
-<button class="home" onclick="window.location.href='https://easyusehub.blogspot.com/?m=1'">
-Home
-</button>
-</div>
-
-</div>
-
-<!-- PDF24 official widget -->
 <script src="https://tools.pdf24.org/static/js/widget.js"></script>
 <script>
 function loadWordToPdfWidget(){
